@@ -2,14 +2,11 @@
 using ProjetoControleFinanceiro.Models;
 using ProjetoControleFinanceiro.Repository;
 using ProjetoControleFinanceiro.Services.Contracts;
-using SQLitePCL;
 
 namespace ProjetoControleFinanceiro.Services
 {
-    
     public class UsuarioService : IUsuarioService
     {
-     
         public async Task CadastrarUsuario(UsuarioModel usuario)
         {
             try
@@ -30,6 +27,7 @@ namespace ProjetoControleFinanceiro.Services
             try
             {
                 using var context = new FinanceiroContext();
+
                 return await context.Usuarios
                     .AsNoTracking()
                     .SingleOrDefaultAsync(u => u.Email == email && u.Senha == senha);
@@ -37,7 +35,7 @@ namespace ProjetoControleFinanceiro.Services
             catch (Exception)
             {
                 throw;
-            }   
+            }
         }
     }
 }

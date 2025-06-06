@@ -6,8 +6,6 @@ namespace ProjetoControleFinanceiro
 {
     public partial class FrmLogin : Form
     {
-
-
         #region Properties
 
         private readonly UsuarioService _usuarioService;
@@ -20,7 +18,6 @@ namespace ProjetoControleFinanceiro
         {
             InitializeComponent();
             _usuarioService = new UsuarioService();
-
         }
 
         #endregion Constructors
@@ -71,7 +68,6 @@ namespace ProjetoControleFinanceiro
             var usuario = await _usuarioService.ObterUsuarioPorEmailESenha(email, senha);
             if (usuario != null)
             {
-                
                 MessageBox.Show("Login realizado com sucesso!");
                 FrmDashBoard dashBoard = new FrmDashBoard();
                 dashBoard.Show();
@@ -79,7 +75,6 @@ namespace ProjetoControleFinanceiro
             }
             else
             {
-                // Se o usuário não for encontrado
                 MessageBox.Show("Email ou senha incorretos, tente novamente!");
             }
         }

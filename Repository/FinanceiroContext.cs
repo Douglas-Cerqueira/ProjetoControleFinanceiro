@@ -40,7 +40,6 @@ namespace ProjetoControleFinanceiro.Repository
                 .UseIdentityColumn();
             });
 
-
             base.OnModelCreating(builder);
         }
     }
