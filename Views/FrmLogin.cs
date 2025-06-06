@@ -1,6 +1,4 @@
-using Microsoft.Data.SqlClient;
 using ProjetoControleFinanceiro.Models;
-using ProjetoControleFinanceiro.Repository;
 using ProjetoControleFinanceiro.Services;
 using ProjetoControleFinanceiro.Views;
 
@@ -8,17 +6,24 @@ namespace ProjetoControleFinanceiro
 {
     public partial class FrmLogin : Form
     {
-        SqlConnection conexao = new SqlConnection("Data Source=DESKTOP-S864QTA;Initial Catalog=FinanceiroDb;Integrated Security=True;Trust Server Certificate=True");
-        SqlCommand cmd;
-        SqlDataReader dr;
+
+
+        #region Properties
+
+        private readonly UsuarioService _usuarioService;
+
+        #endregion Properties
+
+        #region Constructors
+
         public FrmLogin()
         {
             InitializeComponent();
-            using (var db = new FinanceiroContext())
-            {
+            _usuarioService = new UsuarioService();
 
-            }
         }
+
+        #endregion Constructors
 
         private async void btnCadastrar_Click(object sender, EventArgs e)
         {
@@ -36,19 +41,10 @@ namespace ProjetoControleFinanceiro
                             return;
                         }
 
-                        
-                        UsuarioModel NovoUsuario = new UsuarioModel
-                        {
-                            Nome = form.txtUsuario.Text,
-                            Email = form.txtEmailCadastro.Text,
-                            Senha = form.txtSenhaCadastro.Text
-                        };
+                        var usuario = CriarUsuario(form);
 
-                        
-                        var UsuarioService = new UsuarioService();
-                        await UsuarioService.CadastrarUsuario(NovoUsuario);
+                        await _usuarioService.CadastrarUsuario(usuario);
                         MessageBox.Show("Usuário Cadastrado com Sucesso!");
-
                     }
                 }
             }
@@ -58,30 +54,34 @@ namespace ProjetoControleFinanceiro
             }
         }
 
-        private void btnEntrar_Click(object sender, EventArgs e)
+        private UsuarioModel CriarUsuario(FrmCadastroUsuario form)
         {
-            cmd = new SqlCommand("select * from dbo.Usuarios where email=@email and senha =@senha", conexao);   
-            cmd.Parameters.AddWithValue("@email", txtEmailLogin.Text);
-            cmd.Parameters.AddWithValue("@senha", txtSenhaLogin.Text);
-            conexao.Open();
-            dr = cmd.ExecuteReader();
-            if (dr.HasRows)
+            return new UsuarioModel
+            {
+                Nome = form.txtUsuario.Text,
+                Email = form.txtEmailCadastro.Text,
+                Senha = form.txtSenhaCadastro.Text
+            };
+        }
+
+        private async void btnEntrar_Click(object sender, EventArgs e)
+        {
+            string email = txtEmailLogin.Text;
+            string senha = txtSenhaLogin.Text;
+            var usuario = await _usuarioService.ObterUsuarioPorEmailESenha(email, senha);
+            if (usuario != null)
             {
                 
-                MessageBox.Show("Login realizado com Sucesso!");
-                FrmDashBoard dashboard = new FrmDashBoard();
-                dashboard.Show();
+                MessageBox.Show("Login realizado com sucesso!");
+                FrmDashBoard dashBoard = new FrmDashBoard();
+                dashBoard.Show();
                 this.Hide();
-                
             }
             else
             {
+                // Se o usuário não for encontrado
                 MessageBox.Show("Email ou senha incorretos, tente novamente!");
             }
-            
-            
-            
-
         }
     }
 }

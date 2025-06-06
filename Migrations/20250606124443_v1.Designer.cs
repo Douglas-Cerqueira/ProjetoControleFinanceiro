@@ -11,7 +11,7 @@ using ProjetoControleFinanceiro.Repository;
 namespace ProjetoControleFinanceiro.Migrations
 {
     [DbContext(typeof(FinanceiroContext))]
-    [Migration("20250606085848_v1")]
+    [Migration("20250606124443_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -34,8 +34,7 @@ namespace ProjetoControleFinanceiro.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdCategoria");
 
@@ -49,6 +48,9 @@ namespace ProjetoControleFinanceiro.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTransacao"));
+
+                    b.Property<int>("CategoriaIdCategoria")
+                        .HasColumnType("int");
 
                     b.Property<string>("DescricaoTransacao")
                         .IsRequired()
@@ -66,7 +68,7 @@ namespace ProjetoControleFinanceiro.Migrations
 
                     b.HasKey("IdTransacao");
 
-                    b.HasIndex("IdCategoria");
+                    b.HasIndex("CategoriaIdCategoria");
 
                     b.ToTable("Transacoes");
                 });
@@ -100,7 +102,7 @@ namespace ProjetoControleFinanceiro.Migrations
                 {
                     b.HasOne("ProjetoControleFinanceiro.Models.CategoriasModel", "Categoria")
                         .WithMany("Transacoes")
-                        .HasForeignKey("IdCategoria")
+                        .HasForeignKey("CategoriaIdCategoria")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -1,35 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using ProjetoControleFinanceiro.Models;
 using ProjetoControleFinanceiro.Repository;
 using ProjetoControleFinanceiro.Services.Contracts;
-using ProjetoControleFinanceiro.Views;
+using SQLitePCL;
 
 namespace ProjetoControleFinanceiro.Services
 {
+    
     public class UsuarioService : IUsuarioService
     {
+     
         public async Task CadastrarUsuario(UsuarioModel usuario)
         {
-			try
-			{
-				using (var db = new FinanceiroContext())
-				{
-					db.Usuarios.Add(usuario);
-					await db.SaveChangesAsync();
+            try
+            {
+                using var context = new FinanceiroContext();
 
-				}
-			}
-			catch (Exception )
-			{
-
-				throw;
-			}
+                context.Usuarios.Add(usuario);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        
+        public async Task<UsuarioModel> ObterUsuarioPorEmailESenha(string email, string senha)
+        {
+            try
+            {
+                using var context = new FinanceiroContext();
+                return await context.Usuarios
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(u => u.Email == email && u.Senha == senha);
+            }
+            catch (Exception)
+            {
+                throw;
+            }   
+        }
     }
 }

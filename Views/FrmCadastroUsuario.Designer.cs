@@ -161,7 +161,8 @@
             Controls.Add(label2);
             Controls.Add(panel1);
             Name = "FrmCadastroUsuario";
-            Text = "FrmCadastroUsuario";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Cadastro de Usuário ...";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

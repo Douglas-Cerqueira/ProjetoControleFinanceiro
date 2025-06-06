@@ -16,7 +16,7 @@ namespace ProjetoControleFinanceiro.Migrations
                 {
                     IdCategoria = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,23 +47,24 @@ namespace ProjetoControleFinanceiro.Migrations
                     NomeTransacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ValorTransacao = table.Column<double>(type: "float", nullable: false),
                     DescricaoTransacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdCategoria = table.Column<int>(type: "int", nullable: false)
+                    IdCategoria = table.Column<int>(type: "int", nullable: false),
+                    CategoriaIdCategoria = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transacoes", x => x.IdTransacao);
                     table.ForeignKey(
-                        name: "FK_Transacoes_Categorias_IdCategoria",
-                        column: x => x.IdCategoria,
+                        name: "FK_Transacoes_Categorias_CategoriaIdCategoria",
+                        column: x => x.CategoriaIdCategoria,
                         principalTable: "Categorias",
                         principalColumn: "IdCategoria",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transacoes_IdCategoria",
+                name: "IX_Transacoes_CategoriaIdCategoria",
                 table: "Transacoes",
-                column: "IdCategoria");
+                column: "CategoriaIdCategoria");
         }
 
         /// <inheritdoc />

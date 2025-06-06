@@ -121,6 +121,7 @@
             btnCadastrar.Size = new Size(118, 38);
             btnCadastrar.TabIndex = 3;
             btnCadastrar.Text = "Cadastrar";
+            btnCadastrar.TextAlign = ContentAlignment.TopCenter;
             btnCadastrar.UseVisualStyleBackColor = false;
             btnCadastrar.Click += btnCadastrar_Click;
             // 
@@ -140,7 +141,7 @@
             MaximizeBox = false;
             Name = "FrmLogin";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Tela Login ...";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
