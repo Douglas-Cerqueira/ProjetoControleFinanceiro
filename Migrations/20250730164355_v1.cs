@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -44,27 +45,39 @@ namespace ProjetoControleFinanceiro.Migrations
                 {
                     IdTransacao = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NomeTransacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ValorTransacao = table.Column<double>(type: "float", nullable: false),
+                    DataTransacao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    FormaPagamento = table.Column<int>(type: "int", nullable: false),
+                    ValorTransacao = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     DescricaoTransacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdCategoria = table.Column<int>(type: "int", nullable: false),
-                    CategoriaIdCategoria = table.Column<int>(type: "int", nullable: false)
+                    CategoriasModelIdCategoria = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transacoes", x => x.IdTransacao);
                     table.ForeignKey(
-                        name: "FK_Transacoes_Categorias_CategoriaIdCategoria",
-                        column: x => x.CategoriaIdCategoria,
+                        name: "FK_Transacoes_Categorias_CategoriasModelIdCategoria",
+                        column: x => x.CategoriasModelIdCategoria,
+                        principalTable: "Categorias",
+                        principalColumn: "IdCategoria");
+                    table.ForeignKey(
+                        name: "FK_Transacoes_Categorias_IdCategoria",
+                        column: x => x.IdCategoria,
                         principalTable: "Categorias",
                         principalColumn: "IdCategoria",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transacoes_CategoriaIdCategoria",
+                name: "IX_Transacoes_CategoriasModelIdCategoria",
                 table: "Transacoes",
-                column: "CategoriaIdCategoria");
+                column: "CategoriasModelIdCategoria");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transacoes_IdCategoria",
+                table: "Transacoes",
+                column: "IdCategoria");
         }
 
         /// <inheritdoc />
