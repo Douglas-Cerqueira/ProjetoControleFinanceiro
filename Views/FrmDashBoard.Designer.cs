@@ -38,32 +38,42 @@
             txtDespesas = new TextBox();
             tabControl1 = new TabControl();
             TabFiltros = new TabPage();
-            button1 = new Button();
-            textBox1 = new TextBox();
-            comboBox3 = new ComboBox();
+            btnExcluirCategoria = new Button();
+            btnEditarCategoria = new Button();
+            btnBuscar = new Button();
+            txtDescricao = new TextBox();
+            cbxPagamento = new ComboBox();
             label10 = new Label();
             label9 = new Label();
-            comboBox2 = new ComboBox();
+            cbxStatus = new ComboBox();
             label8 = new Label();
-            comboBox1 = new ComboBox();
+            cbxCategoria = new ComboBox();
             label7 = new Label();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker1 = new DateTimePicker();
+            dtpDataFim = new DateTimePicker();
+            dtpDataInicio = new DateTimePicker();
             label6 = new Label();
             label5 = new Label();
             dgvTransacoes = new DataGridView();
             DataTransacao = new DataGridViewTextBoxColumn();
-            Valor = new DataGridViewTextBoxColumn();
-            FormaPagamento = new DataGridViewTextBoxColumn();
-            Categoria = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
-            Descricao = new DataGridViewTextBoxColumn();
-            button2 = new Button();
-            button3 = new Button();
+            FormaPagamento = new DataGridViewTextBoxColumn();
+            NomeCategoria = new DataGridViewTextBoxColumn();
+            ValorTransacao = new DataGridViewTextBoxColumn();
+            DescricaoTransacao = new DataGridViewTextBoxColumn();
+            btnAdicionarTransacao = new Button();
+            btnAdicionarCategoria = new Button();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            txtData = new ToolStripStatusLabel();
+            toolStripStatusLabel3 = new ToolStripStatusLabel();
+            toolStripStatusLabel4 = new ToolStripStatusLabel();
+            toolStripStatusLabel2 = new ToolStripStatusLabel();
+            txtUsuario = new ToolStripStatusLabel();
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             TabFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTransacoes).BeginInit();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -150,17 +160,19 @@
             // 
             // TabFiltros
             // 
-            TabFiltros.Controls.Add(button1);
-            TabFiltros.Controls.Add(textBox1);
-            TabFiltros.Controls.Add(comboBox3);
+            TabFiltros.Controls.Add(btnExcluirCategoria);
+            TabFiltros.Controls.Add(btnEditarCategoria);
+            TabFiltros.Controls.Add(btnBuscar);
+            TabFiltros.Controls.Add(txtDescricao);
+            TabFiltros.Controls.Add(cbxPagamento);
             TabFiltros.Controls.Add(label10);
             TabFiltros.Controls.Add(label9);
-            TabFiltros.Controls.Add(comboBox2);
+            TabFiltros.Controls.Add(cbxStatus);
             TabFiltros.Controls.Add(label8);
-            TabFiltros.Controls.Add(comboBox1);
+            TabFiltros.Controls.Add(cbxCategoria);
             TabFiltros.Controls.Add(label7);
-            TabFiltros.Controls.Add(dateTimePicker2);
-            TabFiltros.Controls.Add(dateTimePicker1);
+            TabFiltros.Controls.Add(dtpDataFim);
+            TabFiltros.Controls.Add(dtpDataInicio);
             TabFiltros.Controls.Add(label6);
             TabFiltros.Controls.Add(label5);
             TabFiltros.Location = new Point(4, 24);
@@ -171,38 +183,58 @@
             TabFiltros.Text = "Filtros:";
             TabFiltros.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnExcluirCategoria
             // 
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(778, 58);
-            button1.Name = "button1";
-            button1.Size = new Size(154, 30);
-            button1.TabIndex = 8;
-            button1.Text = "Buscar";
-            button1.UseVisualStyleBackColor = true;
+            btnExcluirCategoria.Image = Properties.Resources.delete__1_;
+            btnExcluirCategoria.Location = new Point(748, 14);
+            btnExcluirCategoria.Name = "btnExcluirCategoria";
+            btnExcluirCategoria.Size = new Size(31, 25);
+            btnExcluirCategoria.TabIndex = 19;
+            btnExcluirCategoria.UseVisualStyleBackColor = true;
+            btnExcluirCategoria.Click += btnExcluirCategoria_Click_1;
             // 
-            // textBox1
+            // btnEditarCategoria
             // 
-            textBox1.Location = new Point(464, 63);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(298, 23);
-            textBox1.TabIndex = 9;
+            btnEditarCategoria.Image = Properties.Resources.edit__1_;
+            btnEditarCategoria.Location = new Point(711, 14);
+            btnEditarCategoria.Name = "btnEditarCategoria";
+            btnEditarCategoria.Size = new Size(31, 25);
+            btnEditarCategoria.TabIndex = 18;
+            btnEditarCategoria.UseVisualStyleBackColor = true;
+            btnEditarCategoria.Click += btnEditarCategoria_Click;
             // 
-            // comboBox3
+            // btnBuscar
             // 
-            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(195, 63);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(154, 23);
-            comboBox3.Sorted = true;
-            comboBox3.TabIndex = 17;
+            btnBuscar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBuscar.Location = new Point(818, 9);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(106, 30);
+            btnBuscar.TabIndex = 8;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
+            // 
+            // txtDescricao
+            // 
+            txtDescricao.Location = new Point(622, 65);
+            txtDescricao.Name = "txtDescricao";
+            txtDescricao.Size = new Size(302, 23);
+            txtDescricao.TabIndex = 9;
+            // 
+            // cbxPagamento
+            // 
+            cbxPagamento.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxPagamento.FormattingEnabled = true;
+            cbxPagamento.Location = new Point(368, 65);
+            cbxPagamento.Name = "cbxPagamento";
+            cbxPagamento.Size = new Size(154, 23);
+            cbxPagamento.TabIndex = 17;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(370, 63);
+            label10.Location = new Point(528, 65);
             label10.Name = "label10";
             label10.Size = new Size(88, 21);
             label10.TabIndex = 8;
@@ -212,79 +244,77 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(8, 61);
+            label9.Location = new Point(181, 67);
             label9.Name = "label9";
             label9.Size = new Size(181, 21);
             label9.TabIndex = 16;
             label9.Text = "Forma de Pagamento: ";
             // 
-            // comboBox2
+            // cbxStatus
             // 
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(778, 17);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(154, 23);
-            comboBox2.Sorted = true;
-            comboBox2.TabIndex = 15;
+            cbxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxStatus.FormattingEnabled = true;
+            cbxStatus.Location = new Point(75, 67);
+            cbxStatus.Name = "cbxStatus";
+            cbxStatus.Size = new Size(100, 23);
+            cbxStatus.TabIndex = 15;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(701, 16);
+            label8.Location = new Point(8, 67);
             label8.Name = "label8";
             label8.Size = new Size(61, 21);
             label8.TabIndex = 14;
             label8.Text = "Status:";
             // 
-            // comboBox1
+            // cbxCategoria
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(513, 16);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(154, 23);
-            comboBox1.Sorted = true;
-            comboBox1.TabIndex = 13;
+            cbxCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxCategoria.FormattingEnabled = true;
+            cbxCategoria.Location = new Point(504, 14);
+            cbxCategoria.Name = "cbxCategoria";
+            cbxCategoria.Size = new Size(201, 23);
+            cbxCategoria.TabIndex = 13;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(419, 15);
+            label7.Location = new Point(410, 14);
             label7.Name = "label7";
             label7.Size = new Size(88, 21);
             label7.TabIndex = 12;
             label7.Text = "Categoria:";
             // 
-            // dateTimePicker2
+            // dtpDataFim
             // 
-            dateTimePicker2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(308, 14);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(96, 23);
-            dateTimePicker2.TabIndex = 11;
+            dtpDataFim.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpDataFim.Format = DateTimePickerFormat.Short;
+            dtpDataFim.Location = new Point(308, 14);
+            dtpDataFim.Name = "dtpDataFim";
+            dtpDataFim.Size = new Size(96, 23);
+            dtpDataFim.TabIndex = 11;
             // 
-            // dateTimePicker1
+            // dtpDataInicio
             // 
-            dateTimePicker1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(109, 13);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(97, 23);
-            dateTimePicker1.TabIndex = 10;
+            dtpDataInicio.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpDataInicio.Format = DateTimePickerFormat.Short;
+            dtpDataInicio.Location = new Point(109, 13);
+            dtpDataInicio.Name = "dtpDataInicio";
+            dtpDataInicio.Size = new Size(97, 23);
+            dtpDataInicio.TabIndex = 10;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(212, 14);
+            label6.Location = new Point(220, 14);
             label6.Name = "label6";
-            label6.Size = new Size(97, 21);
+            label6.Size = new Size(82, 21);
             label6.TabIndex = 9;
-            label6.Text = "Data Início:";
+            label6.Text = "Data Fim:";
             // 
             // label5
             // 
@@ -301,8 +331,8 @@
             dgvTransacoes.AllowUserToAddRows = false;
             dgvTransacoes.AllowUserToDeleteRows = false;
             dgvTransacoes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTransacoes.Columns.AddRange(new DataGridViewColumn[] { DataTransacao, Valor, FormaPagamento, Categoria, Status, Descricao });
-            dgvTransacoes.Location = new Point(4, 304);
+            dgvTransacoes.Columns.AddRange(new DataGridViewColumn[] { DataTransacao, Status, FormaPagamento, NomeCategoria, ValorTransacao, DescricaoTransacao });
+            dgvTransacoes.Location = new Point(0, 305);
             dgvTransacoes.Name = "dgvTransacoes";
             dgvTransacoes.ReadOnly = true;
             dgvTransacoes.Size = new Size(945, 340);
@@ -310,71 +340,129 @@
             // 
             // DataTransacao
             // 
-            DataTransacao.HeaderText = "Data Da Transação";
+            DataTransacao.DataPropertyName = "DataTransacao";
+            DataTransacao.HeaderText = "Data da Transação";
             DataTransacao.Name = "DataTransacao";
             DataTransacao.ReadOnly = true;
-            DataTransacao.Width = 150;
-            // 
-            // Valor
-            // 
-            Valor.HeaderText = "Valor";
-            Valor.Name = "Valor";
-            Valor.ReadOnly = true;
-            // 
-            // FormaPagamento
-            // 
-            FormaPagamento.HeaderText = "Forma De Pagamento";
-            FormaPagamento.Name = "FormaPagamento";
-            FormaPagamento.ReadOnly = true;
-            FormaPagamento.Width = 150;
-            // 
-            // Categoria
-            // 
-            Categoria.HeaderText = "Categoria";
-            Categoria.Name = "Categoria";
-            Categoria.ReadOnly = true;
+            DataTransacao.Width = 160;
             // 
             // Status
             // 
+            Status.DataPropertyName = "Status";
             Status.HeaderText = "Status";
             Status.Name = "Status";
             Status.ReadOnly = true;
             // 
-            // Descricao
+            // FormaPagamento
             // 
-            Descricao.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Descricao.HeaderText = "Descrição";
-            Descricao.Name = "Descricao";
-            Descricao.ReadOnly = true;
+            FormaPagamento.DataPropertyName = "FormaPagamento";
+            FormaPagamento.HeaderText = "Forma de Pagamento";
+            FormaPagamento.Name = "FormaPagamento";
+            FormaPagamento.ReadOnly = true;
+            FormaPagamento.Width = 160;
             // 
-            // button2
+            // NomeCategoria
             // 
-            button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(4, 651);
-            button2.Name = "button2";
-            button2.Size = new Size(239, 30);
-            button2.TabIndex = 18;
-            button2.Text = "Adicionar Transação";
-            button2.UseVisualStyleBackColor = true;
+            NomeCategoria.DataPropertyName = "NomeCategoria";
+            NomeCategoria.HeaderText = "Categoria";
+            NomeCategoria.Name = "NomeCategoria";
+            NomeCategoria.ReadOnly = true;
             // 
-            // button3
+            // ValorTransacao
             // 
-            button3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(249, 651);
-            button3.Name = "button3";
-            button3.Size = new Size(271, 30);
-            button3.TabIndex = 19;
-            button3.Text = "Adicionar Categoria";
-            button3.UseVisualStyleBackColor = true;
+            ValorTransacao.DataPropertyName = "ValorTransacao";
+            ValorTransacao.HeaderText = "Valor da Transação";
+            ValorTransacao.Name = "ValorTransacao";
+            ValorTransacao.ReadOnly = true;
+            ValorTransacao.Width = 150;
+            // 
+            // DescricaoTransacao
+            // 
+            DescricaoTransacao.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DescricaoTransacao.DataPropertyName = "DescricaoTransacao";
+            DescricaoTransacao.HeaderText = "Descrição";
+            DescricaoTransacao.Name = "DescricaoTransacao";
+            DescricaoTransacao.ReadOnly = true;
+            // 
+            // btnAdicionarTransacao
+            // 
+            btnAdicionarTransacao.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAdicionarTransacao.Location = new Point(4, 651);
+            btnAdicionarTransacao.Name = "btnAdicionarTransacao";
+            btnAdicionarTransacao.Size = new Size(239, 30);
+            btnAdicionarTransacao.TabIndex = 18;
+            btnAdicionarTransacao.Text = "Adicionar Transação";
+            btnAdicionarTransacao.UseVisualStyleBackColor = true;
+            btnAdicionarTransacao.Click += btnAdicionarTransacao_Click;
+            // 
+            // btnAdicionarCategoria
+            // 
+            btnAdicionarCategoria.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAdicionarCategoria.Location = new Point(249, 650);
+            btnAdicionarCategoria.Name = "btnAdicionarCategoria";
+            btnAdicionarCategoria.Size = new Size(213, 32);
+            btnAdicionarCategoria.TabIndex = 19;
+            btnAdicionarCategoria.Text = "Adicionar Categoria";
+            btnAdicionarCategoria.UseVisualStyleBackColor = true;
+            btnAdicionarCategoria.Click += btnAdicionarCategoria_Click;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, txtData, toolStripStatusLabel3, toolStripStatusLabel4, toolStripStatusLabel2, txtUsuario });
+            statusStrip1.Location = new Point(0, 686);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(954, 22);
+            statusStrip1.TabIndex = 20;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(68, 17);
+            toolStripStatusLabel1.Text = "Data Atual: ";
+            // 
+            // txtData
+            // 
+            txtData.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtData.Name = "txtData";
+            txtData.Size = new Size(73, 17);
+            txtData.Text = "10/06/2025";
+            // 
+            // toolStripStatusLabel3
+            // 
+            toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            toolStripStatusLabel3.Size = new Size(67, 17);
+            toolStripStatusLabel3.Text = "Hora Atual:";
+            // 
+            // toolStripStatusLabel4
+            // 
+            toolStripStatusLabel4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            toolStripStatusLabel4.Size = new Size(38, 17);
+            toolStripStatusLabel4.Text = "14:16";
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(93, 17);
+            toolStripStatusLabel2.Text = "Usuário Logado:";
+            // 
+            // txtUsuario
+            // 
+            txtUsuario.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtUsuario.Name = "txtUsuario";
+            txtUsuario.Size = new Size(51, 17);
+            txtUsuario.Text = "Douglas";
             // 
             // FrmDashBoard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(954, 693);
-            Controls.Add(button3);
-            Controls.Add(button2);
+            ClientSize = new Size(954, 708);
+            Controls.Add(statusStrip1);
+            Controls.Add(btnAdicionarCategoria);
+            Controls.Add(btnAdicionarTransacao);
             Controls.Add(dgvTransacoes);
             Controls.Add(tabControl1);
             Controls.Add(txtDespesas);
@@ -387,12 +475,15 @@
             ForeColor = SystemColors.ActiveCaptionText;
             Name = "FrmDashBoard";
             Text = "DashBoard ...";
+            Load += FrmDashBoard_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             tabControl1.ResumeLayout(false);
             TabFiltros.ResumeLayout(false);
             TabFiltros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTransacoes).EndInit();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -409,27 +500,36 @@
         private TextBox txtDespesas;
         private TabControl tabControl1;
         private TabPage TabFiltros;
-        private DateTimePicker dateTimePicker1;
         private Label label6;
         private Label label5;
-        private Button button1;
-        private TextBox textBox1;
-        private ComboBox comboBox3;
+        private Button btnBuscar;
         private Label label10;
         private Label label9;
-        private ComboBox comboBox2;
         private Label label8;
-        private ComboBox comboBox1;
         private Label label7;
-        private DateTimePicker dateTimePicker2;
-        private DataGridView dgvTransacoes;
-        private Button button2;
-        private Button button3;
+        private Button btnAdicionarTransacao;
+        private Button btnAdicionarCategoria;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel txtData;
+        private ToolStripStatusLabel toolStripStatusLabel3;
+        private ToolStripStatusLabel toolStripStatusLabel4;
+        private ToolStripStatusLabel toolStripStatusLabel2;
+        private ToolStripStatusLabel txtUsuario;
+        public DateTimePicker dtpDataInicio;
+        public TextBox txtDescricao;
+        public ComboBox cbxPagamento;
+        public ComboBox cbxStatus;
+        public ComboBox cbxCategoria;
+        public DateTimePicker dtpDataFim;
+        private Button btnExcluirCategoria;
+        private Button btnEditarCategoria;
+        public DataGridView dgvTransacoes;
         private DataGridViewTextBoxColumn DataTransacao;
-        private DataGridViewTextBoxColumn Valor;
-        private DataGridViewTextBoxColumn FormaPagamento;
-        private DataGridViewTextBoxColumn Categoria;
         private DataGridViewTextBoxColumn Status;
-        private DataGridViewTextBoxColumn Descricao;
+        private DataGridViewTextBoxColumn FormaPagamento;
+        private DataGridViewTextBoxColumn NomeCategoria;
+        private DataGridViewTextBoxColumn ValorTransacao;
+        private DataGridViewTextBoxColumn DescricaoTransacao;
     }
 }

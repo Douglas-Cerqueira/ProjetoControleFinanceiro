@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection.Emit;
+using Microsoft.EntityFrameworkCore;
 using ProjetoControleFinanceiro.Models;
 
 namespace ProjetoControleFinanceiro.Repository
@@ -27,7 +28,7 @@ namespace ProjetoControleFinanceiro.Repository
             builder.Entity<CategoriasModel>(e =>
             {
                 e.HasKey(c => c.IdCategoria);
-                e.Property (c => c.IdCategoria)
+                e.Property(c => c.IdCategoria)
                 .ValueGeneratedOnAdd()
                 .UseIdentityColumn();
             });
@@ -38,7 +39,15 @@ namespace ProjetoControleFinanceiro.Repository
                 e.Property(t => t.IdTransacao)
                 .ValueGeneratedOnAdd()
                 .UseIdentityColumn();
+                e.Property(t => t.ValorTransacao)
+                .HasPrecision(18, 2);
             });
+
+            builder.Entity<TransacoesModel>()
+                .HasOne(t => t.Categoria)
+                .WithMany(c => c.Transacoes)
+                .HasForeignKey(t => t.IdCategoria)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
         }

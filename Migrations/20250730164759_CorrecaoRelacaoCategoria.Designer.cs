@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoControleFinanceiro.Repository;
 
@@ -11,9 +12,11 @@ using ProjetoControleFinanceiro.Repository;
 namespace ProjetoControleFinanceiro.Migrations
 {
     [DbContext(typeof(FinanceiroContext))]
-    partial class FinanceiroContextModelSnapshot : ModelSnapshot
+    [Migration("20250730164759_CorrecaoRelacaoCategoria")]
+    partial class CorrecaoRelacaoCategoria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
